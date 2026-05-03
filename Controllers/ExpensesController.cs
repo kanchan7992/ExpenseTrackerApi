@@ -135,7 +135,7 @@ public class ExpensesController : ControllerBase
                         e.Date.Year == year);
 
         // Total spent
-        var totalSpent = query.Sum(e => e.Amount);
+        var totalSpent = query.Sum(e => (double)e.Amount);
 
         // Category-wise grouping
         var categoryWise = query
@@ -143,7 +143,7 @@ public class ExpensesController : ControllerBase
             .Select(g => new
             {
                 category = g.Key,
-                total = g.Sum(e => e.Amount)
+                total = g.Sum(e => (double)e.Amount)
             })
             .ToList();
 
